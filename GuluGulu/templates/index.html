@@ -1,0 +1,143 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Pandemonium{% endblock %}
+
+{% block content %}
+
+<style>
+  @font-face {
+    font-family: 'Mister Sirloin BTN Rare';
+    src: url('ruta/a/tu/fuente/MisterSirloinBTN-Rare.ttf');
+  }
+  
+  h1 {
+    font-family: 'Mister Sirloin BTN Rare', sans-serif;
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+  }
+  
+  #record-button {
+
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  font-size: 24px;
+  z-index: 100; /* Asegura que el botón esté en la parte superior */
+}
+
+.container {
+  position: relative;
+  margin-top: 100px; /* Agrega un margen superior para dejar espacio para el botón */
+
+}
+</style>
+
+
+<div class="container">
+  <h1 class="text-center">GuluGulu</h1>
+  <hr>
+  <form method="POST" action="{{ url_for('index') }}">
+    <div class="form-group row">
+      <label for="transcription" class="col-sm-2 col-form-label">Escribe tu solicitud:</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="transcription" name="transcription">
+      </div>
+      <div class="col-sm-2 text-right">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </form>
+  <button type="button" class="btn btn-primary btn-circle btn-lg" id="record-button">Hablar</button>
+</div>
+
+
+
+
+<script>
+  const recordButton = document.getElementById('record-button');
+  const transcription = document.getElementById('transcription');
+
+  let isRecording = false;
+  let recognition = new window.webkitSpeechRecognition();
+
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  recognition.onstart = function() {
+    isRecording = true;
+    recordButton.classList.add('btn-danger');
+    recordButton.innerText = 'REC';
+  };
+
+  recognition.onend = function() {
+    isRecording = false;
+    recordButton.classList.remove('btn-danger');
+    recordButton.innerText = 'Hablar';
+  };
+
+  recognition.onresult = function(event) {
+    let interimTranscription = '';
+    let finalTranscription = '';
+
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      let transcription = event.results[i][0].transcript;
+      if (event.results[i].isFinal) {
+        finalTranscription += transcription;
+      } else {
+        interimTranscription += transcription;
+      }
+    }
+
+    transcription.value = finalTranscription;
+  };
+
+  recordButton.addEventListener('mousedown', function(event) {
+    event.preventDefault();
+    if (!isRecording) {
+      recognition.start();
+    }
+  });
+
+  recordButton.addEventListener('mouseup', function(event) {
+    event.preventDefault();
+    if (isRecording) {
+      recognition.stop();
+    }
+  });
+</script>
+	<!-- 
+<script>
+  // Obtener la caja de texto y el botón de enviar
+  const textoInput = document.getElementById("texto");
+  const enviarButton = document.getElementById("enviar");
+
+  // Agregar un evento de "keydown" a la caja de texto
+  textoInput.addEventListener("keydown", function(event) {
+    // Si se presiona la tecla Enter, enviar el contenido de la caja de texto
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      enviarButton.click();
+    }
+  });
+
+  // Agregar un evento de "click" al botón de enviar
+  enviarButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    const texto = textoInput.value;
+    console.log(texto); // Aquí se puede enviar el contenido al programa principal
+    textoInput.value = ""; // Limpiar la caja de texto
+  });
+</script>
+-->
+{% endblock %}
+
+
+
+

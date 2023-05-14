@@ -1,0 +1,73 @@
+{
+    "documents": [
+      {
+        "id": "WJXfRxC",
+        "title": "Introducción a la Teoria de Grafos",
+        "tags": [
+          "m1",
+          "teoria de grafos",
+          "eulerianos",
+          "hamiltonianos"
+        ]
+      },
+      {
+        "id": "iGqbYZ7",
+        "title": "Todo lo que tienes que saber de M1",
+        "tags": [
+          "m1"  
+        ]
+      },
+      {
+        "id": "4HMWVoW",
+        "title": "Examen M1 2022 Primavera",
+        "tags": [
+          "examen",
+          "m1",
+          "2022",
+          "primavera"
+        ]
+      },
+      {
+        "id": "oRv7I2s",
+        "title": "Examen M1 2021 Primavera",
+        "tags": [
+          "examen",
+          "m1",
+          "2021",
+          "primavera"
+        ]
+      },
+      {
+        "id": "MHHHcog",
+        "title": "Examen M1 2022 Otoño",
+        "tags": [
+          "examen",
+          "m1",
+          "2022",
+          "otoño"
+        ]
+      },
+      {
+        "id": "1RhfaOd",
+        "title": "Examen M1 2021 Otoño",
+        "tags": [
+          "examen",
+          "m1",
+          "2021",
+          "otoño"
+        ]
+      },
+      {
+        "id": "bFrRZMb",
+        "title": "Álgebra Lineal M2 Guía",
+        "tags": [
+          "álgebra",
+          "m2",
+          "matemática",
+          "álgebra lineal"
+        ]
+      }
+
+  ]
+
+}
